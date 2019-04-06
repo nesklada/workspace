@@ -14,18 +14,22 @@ const 	gulp         = require('gulp'),
 	    babel 		 = require('gulp-babel');
 
 const path = {
-	prod: {
-		root: './dist/',
-		style: './dist/css/',
-		js: './dist/js/',
-		images: './dist/images/',
-	},
-	dev: {
+    dist: {
+        root: './dist/',
+        js: './dist/js/',
+        jsmain: './dist/js',
+        css: './dist/css/',
+        images: './dist/images/',
+        fonts: './dist/fonts/'
+    },
+    app: {
 		root: './app/',
+		html: './app/*.html',
 		style: './app/css/',
-		js: './app/js/',
-		images: './app/images/',
-	},
+        js: './app/js/',
+        images: './app/images/',
+        fonts: './app/fonts/'
+    },
 	scss: {
 		root: './app/scss/',
 		main: './app/scss/site.scss'
@@ -39,7 +43,7 @@ gulp.task('scss', (done) => {
 		.pipe(sass({outputStyle: 'compact'}).on('error', sass.logError))			
 		.pipe(autoprefixer(['last 10 versions', '> 1%', 'ie 9', 'ie 10'], { cascade: true }))
 		.pipe(sourcemaps.write('.'))
-		.pipe(gulp.dest(path.dev.style))
+		.pipe(gulp.dest(path.app.style))
 		.pipe(browserSync.reload({stream: true}))
 	done();
 });
@@ -47,7 +51,7 @@ gulp.task('scss', (done) => {
 gulp.task('browser-sync', () => {
 	browserSync({
 		server: {
-			baseDir: path.dev.root
+			baseDir: path.app.root
 		},
 		notify: false,
 		tunnel: true,
@@ -60,8 +64,8 @@ gulp.task('browser-sync', () => {
 
 gulp.task('watch', () => {
 	gulp.watch(path.scss.root, gulp.series('scss'), browserSync.reload); // watch .scss in dir scss 
-	gulp.watch(path.dev.root + '*.html', browserSync.reload); // watch .html in root 
-	gulp.watch(path.dev.js + '**/*.js', browserSync.reload);   // watch .js files in dir js
+	gulp.watch(path.app.html, browserSync.reload); // watch .html in root 
+	gulp.watch(path.app.js + '**/*.js', browserSync.reload);   // watch .js files in dir js
 });
 
 gulp.task('clean', (done) => {
@@ -70,8 +74,8 @@ gulp.task('clean', (done) => {
 });
 
 gulp.task('html:prod', (done) => {
-	gulp.src(path.dev.root + '*.html')
-		.pipe(gulp.dest(path.prod.root));
+	gulp.src(path.app.html)
+		.pipe(gulp.dest(path.dist.root));
 	done();
 });
 
@@ -80,34 +84,34 @@ gulp.task('style:prod', (done) => {
 		.pipe(sass({outputStyle: 'compact'}).on('error', sass.logError))
 		.pipe(autoprefixer(['last 10 versions', '> 1%', 'ie 9', 'ie 10'], { cascade: true }))
         .pipe(cssmin())
-		.pipe(gulp.dest(path.prod.style))
+		.pipe(gulp.dest(path.dist.css))
 	done();
 });
 
 gulp.task('js:prod', (done) => {
 	gulp.src([
-		path.dev.js + 'jquery-3.1.1.js',
-		path.dev.js + 'custom.js'
+		path.app.js + 'jquery-3.1.1.js',
+		path.app.js + 'custom.js'
 		])
 	.pipe(concat('scripts.js'))
 	.pipe(babel({
 		presets: ['@babel/preset-env']
 	}))
 	.pipe(uglify())
-	.pipe(gulp.dest(path.prod.js))
+	.pipe(gulp.dest(path.dist.js))
 
 	done();
 });
 
 gulp.task('img:prod', (done) => {
-	gulp.src(path.dev.images + '**/*')
+	gulp.src(path.app.images + '**/*')
 		.pipe(cache(imagemin({
 			interlaced: true,
 			progressive: true,
 			svgoPlugins: [{removeViewBox: false}],
 			use: [pngquant()]
 		})))
-		.pipe(gulp.dest(path.prod.images));
+		.pipe(gulp.dest(path.dist.images));
 	done();
 });
 
