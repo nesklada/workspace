@@ -1208,9 +1208,9 @@ html { box-sizing: border-box; -ms-overflow-style: scrollbar; }
 
 .wrapper-page { min-height: 100vh; display: -webkit-flex; display: -ms-flexbox; display: flex; -webkit-flex-direction: column; -ms-flex-direction: column; flex-direction: column; }
 
-.wrapper-page > * { height: 100%; width: 100%; }
+@media (min-width: 768px) { .wrapper-page > * { width: 100%; } }
 
-.wrapper-page .main-page { -webkit-flex: 1 0 auto; -ms-flex: 1 0 auto; flex: 1 0 auto; }
+@media (min-width: 576px) { .wrapper-page .main-page { -webkit-flex: 1 0 auto; -ms-flex: 1 0 auto; flex: 1 0 auto; } }
 
 body { font-size: 10px; /*padding-bottom: 50px;*/ }
 

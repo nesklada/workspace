@@ -4,11 +4,16 @@
     flex-direction: column;
 
     > * {
-        height: 100%;
-        width: 100%;
+
+        @media(min-width: $md) {
+            width: 100%;
+        }
     }
 
     .main-page {
-        flex: 1 0 auto;
+
+        @media(min-width: $sm) {
+            flex: 1 0 auto;
+        }
     }
 }
