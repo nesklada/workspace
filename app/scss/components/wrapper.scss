@@ -1,11 +1,14 @@
 ﻿.wrapper-page{
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+
+    @media(min-width: $sm) {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
 
     > * {
 
-        @media(min-width: $md) {
+        @media(min-width: $sm) {
             width: 100%;
         }
     }

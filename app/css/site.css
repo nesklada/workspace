@@ -1206,9 +1206,9 @@ html { box-sizing: border-box; -ms-overflow-style: scrollbar; }
   .mb-xl-auto, .my-xl-auto { margin-bottom: auto !important; }
   .ml-xl-auto, .mx-xl-auto { margin-left: auto !important; } }
 
-.wrapper-page { min-height: 100vh; display: -webkit-flex; display: -ms-flexbox; display: flex; -webkit-flex-direction: column; -ms-flex-direction: column; flex-direction: column; }
+@media (min-width: 576px) { .wrapper-page { min-height: 100vh; display: -webkit-flex; display: -ms-flexbox; display: flex; -webkit-flex-direction: column; -ms-flex-direction: column; flex-direction: column; } }
 
-@media (min-width: 768px) { .wrapper-page > * { width: 100%; } }
+@media (min-width: 576px) { .wrapper-page > * { width: 100%; } }
 
 @media (min-width: 576px) { .wrapper-page .main-page { -webkit-flex: 1 0 auto; -ms-flex: 1 0 auto; flex: 1 0 auto; } }
 
