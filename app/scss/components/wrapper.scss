@@ -1,22 +1,14 @@
-﻿.wrapper-page{
-
-    @media(min-width: $sm) {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-    }
+﻿.wrapper-page {
+    overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 
     > * {
-
-        @media(min-width: $sm) {
-            width: 100%;
-        }
+        width: 100%;
     }
 
     .main-page {
-
-        @media(min-width: $sm) {
-            flex: 1 0 auto;
-        }
+        flex: 1 0 auto;
     }
 }

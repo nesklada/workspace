@@ -1,0 +1,1 @@
+"use strict";!function(n,o,c){var i=function(){console.log("Wow")};n(function(){i()})}(window.jQuery,window,document);

@@ -5,16 +5,17 @@ const gulp = require('gulp'),
 	browserSync = require('browser-sync'),
 	concat = require('gulp-concat'),
 	uglify = require('gulp-uglifyjs'),
-	cssmin = require('gulp-minify-css'),
+	cleanCSS = require('gulp-clean-css'),
 	rigger = require('gulp-rigger'),
 	del = require('del'),
-	imagemin = require('gulp-imagemin'),
-	pngquant = require('imagemin-pngquant'),
 	cache = require('gulp-cache'),
 	plumber = require('gulp-plumber'),
 	autoprefixer = require('gulp-autoprefixer'),
 	sourcemaps = require('gulp-sourcemaps'),
-	babel = require('gulp-babel');
+	babel = require('gulp-babel'),
+	htmlmin = require('gulp-htmlmin'),
+	replace = require('gulp-replace'),
+	purgecss = require('gulp-purgecss');
 
 const path = {
 	dist: {
@@ -28,7 +29,6 @@ const path = {
 
 	app: {
 		root: './app/',
-		html: './app/*.html',
 		htmlViews: './app/views/pages/*.html',
 		style: './app/css/',
 		scss: './app/scss/site.scss',
@@ -46,13 +46,13 @@ const path = {
 };
 
 const js_plugins = [
-	path.app.jsComponents + 'custom.js'
+	path.app.jsComponents + 'custom.js',
 ];
 
 gulp.task('browser-sync', () => { //local host for development
 	browserSync({
 		server: {
-			baseDir: path.app.root
+			baseDir: './'
 		},
 		notify: false,
 		//tunnel: true,
@@ -67,7 +67,8 @@ gulp.task('browser-sync', () => { //local host for development
 gulp.task('html:dev', (done) => { //compile .html pages in ./app (root);
     gulp.src(path.app.htmlViews)
 		.pipe(rigger())
-        .pipe(gulp.dest(path.app.root)) 
+		.pipe(replace(/{{var_path_env}}/g, path.app.root))
+        .pipe(gulp.dest('./'))
 		.pipe(browserSync.reload({ stream: true }));
 
 	done();
@@ -78,7 +79,6 @@ gulp.task('style:dev', (done) => { //build .css from .scss
 		.pipe(sourcemaps.init())
 		.pipe(plumber())
 		.pipe(sass({outputStyle: 'compact'}).on('error', sass.logError))
-		.pipe(autoprefixer(['last 10 versions', '> 1%', 'ie 9', 'ie 10'], { cascade: true }))
 		.pipe(sourcemaps.write('.'))
 		.pipe(gulp.dest(path.app.style))
 		.pipe(browserSync.reload({stream: true}));
@@ -89,7 +89,7 @@ gulp.task('style:dev', (done) => { //build .css from .scss
 gulp.task('js:dev', (done) => {
 	gulp.src(js_plugins)
 		.pipe(sourcemaps.init())
-		.pipe(concat('scripts.js'))
+		.pipe(concat('custom.js'))
 		.pipe(babel({
 			presets: ['@babel/preset-env']
 		}))
@@ -103,7 +103,7 @@ gulp.task('js:dev', (done) => {
 gulp.task('watch', () => {
 	gulp.watch(path.watch.html, gulp.series('html:dev')); // watch for .html components -> compile to ./app (.html pages);
 	gulp.watch(path.watch.style, gulp.series('style:dev')); // watch .scss in dir scss  -> compile to ./app/css (.css styles);
-	gulp.watch(path.watch.js, gulp.series('js:dev'));   // watch .js files in dir js -> compile to ./app/js (scripts.js);
+	gulp.watch(path.watch.js, gulp.series('js:dev'));   // watch .js files in dir js -> compile to ./app/js (custom.js);
 });
 
 gulp.task('build:dev', //build for DEV env
@@ -117,15 +117,23 @@ gulp.task('build:dev', //build for DEV env
 
 
 //Task for Prod:
-gulp.task('clean', (done) => {
+gulp.task('clean:dist', (done) => {
 	del.sync('dist'); // remove 'dist' dir before build:prod
 
 	done();
 });
 
 gulp.task('html:prod', (done) => { //copy pages from ./app/*.html
-	gulp.src(path.app.html)
-		.pipe(gulp.dest(path.dist.root));
+	gulp.src(path.app.htmlViews)
+		.pipe(rigger())
+		.pipe(replace(/{{var_path_env}}/g, path.dist.root))
+		.pipe(htmlmin({
+			collapseWhitespace: true,
+			// minifyJS: true,
+			minifyCSS: true,
+			removeComments: true
+		}))
+		.pipe(gulp.dest('./'));
 
 	done();
 });
@@ -134,7 +142,10 @@ gulp.task('style:prod', (done) => { //recompile styles from ./app/scss
 	gulp.src(path.app.scss)
 		.pipe(sass({outputStyle: 'compact'}).on('error', sass.logError))
 		.pipe(autoprefixer(['last 10 versions', '> 1%', 'ie 9', 'ie 10'], { cascade: true }))
-		.pipe(cssmin())
+		.pipe(purgecss({
+            content: ['**/*.html']
+        }))
+		.pipe(cleanCSS({level: {1: {specialComments: 0}, 2: {},},}))
 		.pipe(gulp.dest(path.dist.css));
 
 	done();
@@ -142,25 +153,12 @@ gulp.task('style:prod', (done) => { //recompile styles from ./app/scss
 
 gulp.task('js:prod', (done) => { //recompile scripts from ./app/js/components 
 	gulp.src(js_plugins)
-		.pipe(concat('scripts.js'))
+		.pipe(concat('custom.js'))
 		.pipe(babel({
 			presets: ['@babel/preset-env']
 		}))
 		.pipe(uglify())
 		.pipe(gulp.dest(path.dist.js));
-
-	done();
-});
-
-gulp.task('img:prod', (done) => { //copy images from ./app/images/
-	gulp.src(path.app.images + '**/*')
-		.pipe(cache(imagemin({
-			interlaced: true,
-			progressive: true,
-			svgoPlugins: [{removeViewBox: false}],
-			use: [pngquant()]
-		})))
-		.pipe(gulp.dest(path.dist.images));
 
 	done();
 });
@@ -171,11 +169,10 @@ gulp.task('clear', (callback) => {
 
 gulp.task('build:prod', //build for PROD env
 	gulp.series(
-		'clean',
+		'clean:dist',
 		'html:prod',
 		'style:prod',
-		'js:prod',
-		'img:prod'), (done) => {
+		'js:prod'), (done) => {
 
 	done();
 });

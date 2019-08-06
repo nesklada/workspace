@@ -2,6 +2,8 @@
 @import "../../node_modules/bootstrap-scss/bootstrap-reboot.scss";
 @import "../../node_modules/bootstrap-scss/bootstrap-grid.scss";
 
+/* purgecss start ignore */
+
 //variables:
 @import "settings/brand-color";
 @import "settings/grid-variable";
@@ -13,6 +15,8 @@
 
 //Components:
 @import "components/wrapper";
-@import "components/header";
-@import "components/main";
-@import "components/footer";
+@import "components/header-page";
+@import "components/main-page";
+@import "components/footer-page";
+
+/* purgecss end ignore */
