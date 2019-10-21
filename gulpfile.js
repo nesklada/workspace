@@ -6,7 +6,7 @@ const gulp = require('gulp'),
 	concat = require('gulp-concat'),
 	uglify = require('gulp-uglifyjs'),
 	cleanCSS = require('gulp-clean-css'),
-	rigger = require('gulp-rigger'),
+	fileinclude = require('gulp-file-include'),
 	del = require('del'),
 	cache = require('gulp-cache'),
 	plumber = require('gulp-plumber'),
@@ -66,7 +66,10 @@ gulp.task('browser-sync', () => { //local host for development
 //Task for Dev:
 gulp.task('html:dev', (done) => { //compile .html pages in ./app (root);
     gulp.src(path.app.htmlViews)
-		.pipe(rigger())
+		.pipe(fileinclude({
+			prefix: '@@',
+			basepath: '@file'
+		}))
 		.pipe(replace(/{{var_path_env}}/g, path.app.root))
         .pipe(gulp.dest('./'))
 		.pipe(browserSync.reload({ stream: true }));
@@ -125,7 +128,10 @@ gulp.task('clean:dist', (done) => {
 
 gulp.task('html:prod', (done) => { //copy pages from ./app/*.html
 	gulp.src(path.app.htmlViews)
-		.pipe(rigger())
+		.pipe(fileinclude({
+			prefix: '@@',
+			basepath: '@file'
+		}))
 		.pipe(replace(/{{var_path_env}}/g, path.dist.root))
 		.pipe(htmlmin({
 			collapseWhitespace: true,
