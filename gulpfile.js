@@ -62,7 +62,7 @@ const versionConfig = {
 			},
 			{
 			'type': 'js',
-			'files': ['scripts.js']
+			'files': ['custom.js']
 			},
 		],
 	},
