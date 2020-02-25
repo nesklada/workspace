@@ -8,9 +8,9 @@
   "author": "Stas Nesklada",
   "license": "",
   "devDependencies": {
-    "@babel/core": "^7.4.5",
-    "@babel/plugin-transform-runtime": "^7.4.3",
-    "@babel/preset-env": "^7.4.5",
+    "@babel/core": "^7.8.4",
+    "@babel/plugin-transform-runtime": "^7.8.3",
+    "@babel/preset-env": "^7.8.4",
     "babel-core": "^7.0.0-bridge.0",
     "babel-loader": "^8.0.6",
     "babel-plugin-transform-runtime": "^6.23.0",
@@ -21,7 +21,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "browser-sync": "^2.26.7",
     "del": "^2.2.0",
-    "gulp": "^4.0.0",
+    "gulp": "^4.0.2",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-babel": "^8.0.0",
     "gulp-cache": "^0.4.2",
@@ -32,12 +32,13 @@
     "gulp-replace": "^1.0.0",
     "gulp-sass": "^3.1.0",
     "gulp-sourcemaps": "^2.6.5",
-    "gulp-uglifyjs": "^0.6.2"
+    "gulp-uglifyjs": "^0.6.2",
+    "gulp-version-number": "^0.2.4"
   },
   "dependencies": {
-    "@babel/runtime": "^7.4.3",
-    "bootstrap-scss": "^4.3.1",
-    "gulp-htmlmin": "^5.0.1",
-    "gulp-file-include": "^2.1.0"
+    "@babel/runtime": "^7.8.4",
+    "bootstrap-scss": "^4.4.1",
+    "gulp-file-include": "^2.1.1",
+    "gulp-htmlmin": "^5.0.1"
   }
 }

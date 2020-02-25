@@ -15,7 +15,8 @@ const gulp = require('gulp'),
 	babel = require('gulp-babel'),
 	htmlmin = require('gulp-htmlmin'),
 	replace = require('gulp-replace'),
-	purgecss = require('gulp-purgecss');
+	purgecss = require('gulp-purgecss'),
+	version = require('gulp-version-number');
 
 const path = {
 	dist: {
@@ -49,6 +50,23 @@ const js_plugins = [
 	path.app.jsComponents + 'custom.js',
 ];
 
+const versionConfig = {
+	'value': '%DT%',
+	'append': {
+		'cover': 1,
+		'key': 'v',
+		'to' : [
+			{
+			'type': 'css',
+			'files': ['site.css']
+			},
+			{
+			'type': 'js',
+			'files': ['scripts.js']
+			},
+		],
+	},
+};
 gulp.task('browser-sync', () => { //local host for development
 	browserSync({
 		server: {
@@ -79,8 +97,8 @@ gulp.task('html:dev', (done) => { //compile .html pages in ./app (root);
 
 gulp.task('style:dev', (done) => { //build .css from .scss
 	gulp.src(path.app.scss)
-		.pipe(sourcemaps.init())
 		.pipe(plumber())
+		.pipe(sourcemaps.init())
 		.pipe(sass({outputStyle: 'compact'}).on('error', sass.logError))
 		.pipe(sourcemaps.write('.'))
 		.pipe(gulp.dest(path.app.style))
@@ -139,6 +157,7 @@ gulp.task('html:prod', (done) => { //copy pages from ./app/*.html
 			minifyCSS: true,
 			removeComments: true
 		}))
+		.pipe(version(versionConfig))
 		.pipe(gulp.dest('./'));
 
 	done();
