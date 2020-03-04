@@ -3,6 +3,7 @@
 (function ($, window, document) {
   var doSomethings = function doSomethings() {
     console.log('Wow');
+    xzc;
   };
 
   $(function () {

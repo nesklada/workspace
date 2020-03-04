@@ -1,7 +1,7 @@
 (function ($, window, document) {
 
 	const doSomethings = () => {
-		console.log('Wow');
+		console.log('Wow');xzc
 	}
 
 	$(() => {

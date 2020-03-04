@@ -1,0 +1,15 @@
+body{
+    font-size: 14px;
+    font-family: $main-font;
+    line-height: 1.2;
+    opacity: 0;
+    
+    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+        opacity: 1;
+    }
+}
+
+a:hover{
+    color: none;
+    text-decoration: none;
+}
