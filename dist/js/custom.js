@@ -1,1 +1,1 @@
-"use strict";!function(n,o,c){var i=function(){console.log("Wow")};n(function(){i()})}(window.jQuery,window,document);
+"use strict";!function(n,o,c){var i=function(){console.log("Wow"),xzc};n(function(){i()})}(window.jQuery,window,document),function(n,o,c){n(function(){n("body").css("opacity",1)})}(window.jQuery,window,document);

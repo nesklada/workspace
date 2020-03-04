@@ -1,11 +1,7 @@
 (function ($, window, document) {
 
-	const doSomethings = () => {
-		console.log('Wow');
-	}
-
 	$(() => {
-		doSomethings();
+		$('body').css('opacity', 1);
 	});
 
 }(window.jQuery, window, document));

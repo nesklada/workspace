@@ -48,6 +48,7 @@ const path = {
 
 const js_plugins = [
 	path.app.jsComponents + 'custom.js',
+	path.app.jsComponents + 'showPageAfterLoad.js',
 ];
 
 const versionConfig = {
