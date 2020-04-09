@@ -47,6 +47,9 @@ const path = {
 };
 
 const js_plugins = [
+	path.app.jsComponents + 'config/jquery.validation-default.js',
+	path.app.jsComponents + 'form-contact.js',
+	path.app.jsComponents + 'form-unsubscribe.js',
 	path.app.jsComponents + 'utm-links.js',
 	path.app.jsComponents + 'custom.js',
 	path.app.jsComponents + 'showPageAfterLoad.js',

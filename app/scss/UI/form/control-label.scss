@@ -1,0 +1,10 @@
+.control-label {
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.3;
+    user-select: none;
+
+    @media(min-width: $md) {
+        font-size: 17px;
+    }
+}

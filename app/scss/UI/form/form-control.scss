@@ -1,0 +1,51 @@
+.form-control {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    min-height: 42px;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #04252A;
+    background-color: #fff;
+    background-clip: padding-box;
+    -webkit-appearance: none;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+    @media(min-width: $md) {
+        font-size: 14px;
+    }
+
+    @include placeholder {
+        transition: 0.2s linear;
+    }
+
+    &:focus {
+        border: 1px solid $color-primary;
+        box-shadow: 0 0 0 1px $color-primary;
+
+        @include placeholder {
+            opacity: 0.75;
+        }
+    }
+
+    &.error {
+
+        &:not(:focus) {
+            background-color: rgba($color-danger, 0.15);
+            border-color: $color-danger;
+        }
+    }
+
+    &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+}
+
+select.form-control {
+    padding-right: 40px;
+    background: url(../../images/payment/select-arrow.png) no-repeat center right;
+}

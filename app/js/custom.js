@@ -1,5 +1,85 @@
 "use strict";
 
+jQuery.validator.setDefaults({
+  errorElement: 'label',
+  errorClass: 'error',
+  focusInvalid: false,
+  errorPlacement: function errorPlacement(error, element) {
+    $(element).closest('.form-group').append(error);
+  },
+  highlight: function highlight(element, errorClass, validClass) {
+    var fieldWrap = $(element).closest('.form-group');
+    fieldWrap.addClass('has-error').removeClass('has-valid');
+    $(element).addClass('error');
+  },
+  unhighlight: function unhighlight(element, errorClass, validClass) {
+    var fieldWrap = $(element).closest('.form-group');
+    fieldWrap.removeClass('has-error').addClass('has-valid');
+    $(element).removeClass('error');
+  }
+});
+
+(function ($, window, document) {
+  var $formContact = $('#js_form-contact');
+  $formContact.validate({
+    rules: {
+      contact_email: {
+        required: true,
+        email: true
+      },
+      contact_message: {
+        required: true,
+        minlength: 10
+      }
+    }
+  });
+  $formContact.submit(function (e) {
+    e.preventDefault();
+
+    if (!$formContact.valid()) {
+      return;
+    }
+
+    var $control = $formContact.find('.btn');
+    $control.addClass('btn--loading').attr('disabled', true);
+    setTimeout(function () {
+      alert('Your message was successfully sent.');
+      $formContact.find('input').val('');
+      $formContact.find('.form-group').removeClass('has-valid');
+      $control.removeClass('btn--loading').attr('disabled', false);
+    }, 2410);
+  });
+})(window.jQuery, window, document);
+
+(function ($, window, document) {
+  var $formUnsubscribe = $('#js_form-unsubscribe');
+  $formUnsubscribe.validate({
+    rules: {
+      unsubscribe_email: {
+        required: true,
+        email: true
+      }
+    }
+  });
+  $formUnsubscribe.submit(function (e) {
+    e.preventDefault();
+
+    if (!$formUnsubscribe.valid()) {
+      return;
+    }
+
+    var $control = $formUnsubscribe.find('.btn');
+    $control.addClass('btn--loading').attr('disabled', true);
+    setTimeout(function () {
+      alert('If your email was found in our database - you have been unsubscribed.');
+      $formUnsubscribe.find('input').val('');
+      $formUnsubscribe.find('.form-group').removeClass('has-valid');
+      $control.removeClass('btn--loading').attr('disabled', false);
+      ;
+    }, 2500);
+  });
+})(window.jQuery, window, document);
+
 (function ($, window, document) {
   function formatWindowSearch() {
     var pairs = window.location.search.substring(1).split("&"),

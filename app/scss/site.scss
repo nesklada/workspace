@@ -6,13 +6,19 @@
 //variables:
 @import "settings/brand-color";
 @import "settings/grid-variable";
+@import "settings/mixins";
 
 //UI:
+/* purgecss start ignore */
+@import "UI/btn";
+@import "UI/form/form-group";
+@import "UI/form/form-control";
+@import "UI/form/form-validation";
+@import "UI/form/control-label";
+/* purgecss end ignore */
 @import "UI/icon-svg";
 @import "UI/typography";
 @import "UI/brand-logo";
-@import "UI/btn";
-@import "UI/form";
 @import "UI/list";
 @import "UI/media-illustration";
 @import "UI/table";
@@ -28,6 +34,8 @@
 @import "components/_main-page";
 @import "components/_footer-page";
 @import "components/article";
+
+@import "pages/content-page";
 
 /* purgecss start ignore */
 /* purgecss end ignore */
