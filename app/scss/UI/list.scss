@@ -1,0 +1,49 @@
+.list-check {
+    padding: 0;
+    margin: 20px 0 24px;
+    list-style: none;
+
+    @media(min-width: $md) {
+        margin-top: 25px;
+        margin-bottom: 30px;
+    }
+
+    &-item {
+        position: relative;
+        padding-left: 25px;
+        margin-bottom: 20px;
+
+        @media(min-width: $md) {
+            padding-left: 30px;
+            margin-bottom: 30px;
+        }
+
+        @media(min-width: $lg) {
+            padding-left: 34px;
+        }
+
+        &:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 19px;
+            height: 15px;
+            background: url(../../images/icon-list-check.svg) no-repeat left top /contain;
+
+            @media(min-width: $md) {
+                top: 3px;
+                width: 24px;
+                height: 20px;
+            }
+        }
+
+        .list-check-item-holder {
+            margin: 0 -2px;
+
+            @media(min-width: $md) {
+                transform: translateX(-30px);
+            }
+        }
+    }
+}

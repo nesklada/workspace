@@ -1,11 +1,23 @@
 (function ($, window, document) {
+    function videoPlayerInit() {
+        const players = document.querySelectorAll(".js-player");
 
-	const doSomethings = () => {
-		console.log('Wow');
-	}
+        if (!players.length) {
+            return;
+        }
 
-	$(() => {
-		doSomethings();
-	});
+        for (let i = 0; i < players.length; i++) {
+            new Plyr(players[i]);
+        }
+    }
 
-}(window.jQuery, window, document));
+    $(() => {
+        $("body").css("opacity", 1);
+
+        videoPlayerInit();
+
+        $(".lazy").Lazy({
+            threshold: 1000,
+        });
+    });
+})(window.jQuery, window, document);

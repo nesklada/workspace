@@ -9,7 +9,14 @@ body{
     }
 }
 
-a:hover{
-    color: none;
-    text-decoration: none;
+a {
+    $color: #00a3ff;
+
+    color: $color;
+    text-decoration: underline;
+
+    &:hover{
+        color: darken($color, 10%);
+        text-decoration: none;
+    }
 }
