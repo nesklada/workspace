@@ -1856,6 +1856,10 @@ button.plyr__control--overlaid:hover { background-color: rgba(21, 178, 174, 0.9)
 
 .plyr--paused .plyr__controls { opacity: 0; }
 
+.media-illustration { position: relative; user-select: none; }
+
+.media-illustration:after { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 2; }
+
 .img-responsive { max-width: 100%; height: auto; }
 
 .hide { display: none !important; }
