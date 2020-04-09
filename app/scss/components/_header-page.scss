@@ -1,0 +1,20 @@
+﻿.header-page {
+    padding: 15px 0;
+    letter-spacing: 0.01em;
+    color: $brand-white;
+    background: #203A43;
+    background: linear-gradient(180deg, #2C5364 0%, #203A43 47.4%, #132831 100%);
+    box-shadow: 0px 3px 16px rgba(0, 0, 0, 0.2);
+
+    @media(min-width: $md) {
+        font-size: 19px;
+    }
+
+    @media(min-width: $lg) {
+        padding: 25px 0;
+    }
+
+    .container {
+        max-width: 970px;
+    }
+}

@@ -1,0 +1,30 @@
+label.error {
+    margin-top: 3px;
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba($color-danger, 0.8);
+}
+
+.has-valid {
+
+    .form-control {
+        border-color: lighten($color-success, 10%);
+        background-color: rgba($color-success, 0.1);
+        box-shadow: 0 0 1px 1px lighten($color-success, 10%);
+    }
+}
+
+.form-group:not(.has-error) {
+
+    label.error {
+        display: none !important;
+    }
+}
+
+input.error:focus {
+
+    ~ label.error {
+        display: none !important;
+    }
+}

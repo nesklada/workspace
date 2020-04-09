@@ -1,0 +1,18 @@
+﻿.wrapper-page {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    > * {
+        width: 100%;
+    }
+
+    .main-page {
+        flex: 1 0 auto;
+        display: flex;
+        flex-direction: column;
+        min-height: 100px;
+    }
+}

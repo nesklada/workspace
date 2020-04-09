@@ -1,0 +1,23 @@
+.brand-logo {
+    font-family: $second-font;
+    font-size: 14px;
+    font-weight: 600;
+    color: $brand-white;
+    line-height: 1.36;
+    letter-spacing: 0.02em;
+    user-select: none;
+    text-decoration: none;
+
+    @media(min-width: $md) {
+        font-size: 22px;
+        letter-spacing: 0.01em;
+    }
+
+    &_warn {
+        color: #ec7752;
+    }
+
+    &:hover {
+        color: $brand-white;
+    }
+}

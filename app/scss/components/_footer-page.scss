@@ -1,0 +1,66 @@
+﻿.footer-page {
+    padding-top: 20px;
+    padding-bottom: 50px;
+    color: #E1E1E1;
+    line-height: 1.5;
+    background: #203A43;
+    background: linear-gradient(180deg, #2C5364 0%, #203A43 47.4%, #132831 100%);
+    box-shadow: 0px 3px 16px rgba(0, 0, 0, 0.2);
+
+    @media(min-width: $lg) {
+        padding-top: 50px;
+        padding-bottom: 40px;
+    }
+
+    &_copyright {
+        margin-bottom: 23px;
+        letter-spacing: 0.02em;
+    }
+
+    &_content {
+        margin-bottom: 25px;
+        font-size: 12px;
+        font-weight: 300;
+        letter-spacing: 0.01em;
+
+        @media(min-width: $md) {
+            font-size: 12px;
+        }
+
+        @media(min-width: $lg) {
+            font-size: 16px;
+        }
+    }
+
+    &_nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+
+        @media(min-width: $md) {
+            flex-direction: row;
+        }
+
+        &-item {
+            margin-bottom: 20px;
+            text-decoration: none;
+            
+            @media(min-width: $md) {
+                margin-right: 40px;
+                margin-bottom: 0;
+                flex-direction: row;
+            }
+
+            &:last-child {
+                margin: 0;
+            }
+        }
+    }
+
+    a {
+        color: inherit;
+    }
+}

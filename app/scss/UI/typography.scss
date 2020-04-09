@@ -1,0 +1,153 @@
+﻿$main-font: 'Open Sans', sans-serif;
+$second-font: 'Montserrat', sans-serif;
+
+$light: 300;
+$regular: 400;
+$semi-bold: 600;
+$bold: 700;
+
+.text--uppercase {
+    text-transform: uppercase;
+}
+
+.text--capitalize {
+    text-transform: capitalize;
+}
+
+.text--underline {
+    text-decoration: underline;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text{
+
+    &--success {
+        color: $brand-success;
+    }
+
+    &--danger {
+        color: #E63232;
+    }
+
+    &--warning {
+        color: #d2500d;
+    }
+
+    &--semi-bold {
+        font-weight: $semi-bold;
+    }
+
+    &--bold {
+        font-weight: $bold;
+    }
+
+    &-nowrap {
+        white-space: nowrap;
+    }
+
+    &-breakall {
+        word-break: break-all;
+    }
+
+    &--leadid {
+        color: #00667F;
+        font-weight: 900;
+        white-space: nowrap;
+    }
+
+    &-left-md {
+
+        @media(min-width: $md) {
+            text-align: left;
+        }
+    }
+}
+
+.content-text {
+    font-size: 16px;
+    line-height: 1.35;
+
+    @media(min-width: $sm) {
+        font-size: 1.15rem;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        margin-bottom: .75rem;
+        margin-top: 2.5rem;
+        font-family: inherit;
+        font-weight: 600;
+        line-height: 1.2;
+        color: inherit;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+
+        @media (min-width: $md) {
+            font-size: 2rem;
+        }
+    }
+
+    h3 {
+        font-size: 1.3rem;
+
+        @media (min-width: $md) {
+            font-size: 1.75rem;
+        }
+    }
+
+    h4 {
+        font-size: 1.1rem;
+
+        @media (min-width: $md) {
+            font-size: 1.5rem;
+        }
+    }
+
+    h5 {
+        font-size: 1.05rem;
+
+        @media (min-width: $md) {
+            font-size: 1.75rem;
+        }
+    }
+
+    h6 {
+        font-size: 1rem;
+    }
+
+    li {
+        margin-bottom: 0.75rem;
+    }
+
+    p,
+    ul,
+    ol {
+        margin-bottom: 1.25rem;
+    }
+
+    :first-child {
+        margin-top: 0;
+    }
+
+    :last-child {
+        margin-bottom: 0;
+    }
+}

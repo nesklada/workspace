@@ -1,0 +1,12 @@
+.icon-svg {
+    display: inline-block;
+    vertical-align: top;
+    overflow: hidden;
+
+    svg {
+        background: inherit;
+        height: 100%;
+        width: 100%;
+        fill: inherit;
+    }
+}
