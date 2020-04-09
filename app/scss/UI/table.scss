@@ -2,6 +2,7 @@
     margin-bottom: 24px;
     width: 100%;
     font-size: 13px;
+    line-height: 1.35;
     letter-spacing: 0.02em;
     color: #1E1E1E;
     background: #fff;
@@ -40,6 +41,13 @@
                 background: #FAFAFA;
             }
         }
+
+        &:first-child {
+
+            .table_col {
+                font-family: $main-font;
+            }
+        }
     }
 
     &_col {
@@ -71,6 +79,10 @@
             @media(max-width: $smaller-then-xs) {
                 font-size: 11px;
             }
+        }
+
+        &:not(:first-child) {
+            font-family: $second-font;
         }
 
         &:last-child {
@@ -182,25 +194,22 @@
             content: '';
             position: absolute;
             top: 100%;
-            left: 3px;
-            right: 3px;
+            left: 0;
+            right: 0;
             transform: translateY(-50%);
             height: 15px;
             background: linear-gradient(179.79deg, #1E1E1E 3.36%, rgba(30, 30, 30, 0) 114.13%);
             opacity: 0.4;
             z-index: -1;
+            border-radius: 50%;
             filter: blur(3px);
 
             @media(min-width: $md) {
-                left: 8px;
-                right: 8px;
                 height: 33px;
                 filter: blur(8px);
             }
 
             @media(min-width: $lg) {
-                left: 14px;
-                right: 14px;
                 height: 60px;
                 filter: blur(14px);
                 transform: translateY(-65%);

@@ -47,6 +47,7 @@ const path = {
 };
 
 const js_plugins = [
+	path.app.jsComponents + 'utm-links.js',
 	path.app.jsComponents + 'custom.js',
 	path.app.jsComponents + 'showPageAfterLoad.js',
 ];
