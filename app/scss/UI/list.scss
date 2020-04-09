@@ -39,9 +39,11 @@
         }
 
         .list-check-item-holder {
-            margin: 0 -2px;
+            margin: 24px -2px 30px;
 
             @media(min-width: $md) {
+                margin-top: 30px;
+                margin-bottom: 50px;
                 transform: translateX(-30px);
             }
         }

@@ -8,13 +8,17 @@
 @import "settings/grid-variable";
 
 //UI:
+@import "UI/icon-svg";
 @import "UI/typography";
 @import "UI/brand-logo";
 @import "UI/btn";
 @import "UI/form";
 @import "UI/list";
-@import "UI/plyr-player";
 @import "UI/media-illustration";
+@import "UI/table";
+/* purgecss start ignore */
+@import "UI/plyr-player";
+/* purgecss end ignore */
 
 //Components:
 @import "components/_grid";
